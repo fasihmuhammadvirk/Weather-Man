@@ -33,16 +33,13 @@ class Files:
     Events: any
     WindDirDegrees: any
 
-#path to the dataset directory
-path = "/Users/fasihmuhammadvirk/Desktop/Github/Weather-Man/data"
-files_lst = listdir(path)
-
 
 # function to remove spaces from the header of the files
 def conversion(dic:dict) -> dict:
     new_dic = {}
     for key, value in dic.items():
         new_key = key.replace(" ", "").replace("/", "")
+
         # converting into appropriate data type
         # place PKT and Event in the if statement cause they are not properly formated so, cant be converted
         if new_key == "PKT":
@@ -50,16 +47,17 @@ def conversion(dic:dict) -> dict:
         elif new_key == "Events":
             new_dic[new_key] = value
         else:
+            #checking for null value
             if value == "":
                 new_dic[new_key] = value
             else:
+                # converting each value to its desire datatype
                 new_dic[new_key] = literal_eval(value)
 
     return new_dic
 
-
-def parser(files_name_lst):
-    # parser
+# parser
+def parser(files_name_lst:list) -> None:
 
     # data structure to store the file name with its data
     files_name_dir = {}
@@ -83,7 +81,12 @@ def parser(files_name_lst):
             files_name_dir[f'{file_name}'] = files
 
 
+#path to the dataset directory
+path = "/Users/fasihmuhammadvirk/Desktop/Github/Weather-Man/data"
+files_lst = listdir(path)
 
+# uploading data
+parser(files_lst)
 
 
 
