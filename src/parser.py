@@ -4,7 +4,6 @@ from os import listdir
 from ast import literal_eval
 
 
-
 #dataclass for the Files Data
 @dataclass
 class Files:
@@ -33,9 +32,18 @@ class Files:
     Events: any
     WindDirDegrees: any
 
-
-# function to remove spaces from the header of the files
 def conversion(dic:dict) -> dict:
+    """
+This function take a dictionary remove spaces from its key and convert its each value into appropriate data type and
+return a new dictionary.
+
+Args:
+    dic: take a dictionary
+return:
+    dict : return a dictionary
+    """
+
+
     new_dic = {}
     for key, value in dic.items():
         new_key = key.replace(" ", "").replace("/", "")
@@ -58,7 +66,15 @@ def conversion(dic:dict) -> dict:
 
 # parser
 def parser(files_name_lst:list) -> None:
+    """
+    Take a List of filename and prase the data of each file name in the list.
 
+    Args:
+        files_name_lst: take a list conditioning of filenames
+
+    Return:
+        None
+    """
     # data structure to store the file name with its data
     files_name_dir = {}
     for file_names in files_name_lst:
