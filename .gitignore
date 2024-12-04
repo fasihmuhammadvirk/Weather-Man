@@ -1,6 +1,6 @@
-/data
-/env
-/src
 .gitattributes
 .idea
 .DS_Store
+/env
+/data
+/src/practice.py
