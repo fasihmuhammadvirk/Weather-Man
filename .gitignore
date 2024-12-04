@@ -1,3 +1,5 @@
 /src/practise.py
 /data
-
+/env
+.idea
+.gitattributes
