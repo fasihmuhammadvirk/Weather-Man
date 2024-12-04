@@ -1,0 +1,6 @@
+/data
+/env
+/src
+.gitattributes
+.idea
+.DS_Store
