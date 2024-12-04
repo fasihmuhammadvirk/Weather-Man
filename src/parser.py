@@ -180,9 +180,13 @@ def parser( files_name_lst:list )-> Object:
             file_name = file_names.replace(path, "").replace("Murree_weather_","").replace(".txt","")
             files_name_dir[f'{file_name}'] = files
 
+    #imported data from all the file
     imported_data = files_name_dir
 
+    #instance of the class
     all_weather_data = WeathreData()
+
+    #parsing data
     for key, value in imported_data.items():
 
         key = key.split("_")
@@ -201,6 +205,7 @@ def parser( files_name_lst:list )-> Object:
                 # print("yes")
 
     return all_weather_data
+
 
 
 
