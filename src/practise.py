@@ -73,21 +73,102 @@
 # #     if "2011" in key and "May" in key:
 # #         print(key)
 
+# dic = {}
+#
+#
+# dic["2011"] = {}
+# dic["2011"]["9"]= {}
+# dic['2011']['9']['8'] = "this is the data"
+#
+#
+#
+# dic["2012"] = {}
+# dic["2012"]["9"]= {}
+# dic['2012']['9']['8'] = "this is the data"
+#
+# dic["2013"] = {}
+# dic["2013"]["9"]= {}
+# dic['2013']['9']['8'] = "this is the data"
+# dic["2013"]["8"]= {}
+# dic['2013']['9']['8'] = "this is the data"
+#
+#
+# dic["2014"] = {}
+# dic["2014"]["9"]= {}
+# dic['2014']['9']['8'] = "this is the data"
+# print(dic)
+#
+class wd():
 
+    def __init__(self):
+        print('hi')
+        dic = {
+            "2011": {"9": {"1": "data",
+                           "2": "data", },
+                     "8": {"1": "data",
+                           "2": "data",
+                           }
 
-dic = {
-    "2011":{
-        "9":{
-            1:"This is the data"
+                     },
+            "2012": {"9": {"1": "data",
+                           "2": "data", },
+                     "8": {"1": "data",
+                           "2": "data",
+                           }
+
+                     },
         }
-    }
-}
+        self.data = dic
+
+    def add_data(self,y,m,d,dd):
+        if y in self.data.keys():
+            if m in self.data[y].keys():
+                self.data[y][m][d] = dd
+            else:
+                self.data[y][m] = {}
+                self.data[y][m][d] = dd
+        else:
+            self.data[y] = {}
+            self.data[y][m] = {}
+            self.data[y][m][d] = dd
+
+        # print(self.data)
+
+    def get_d(self):
+        return self.data
 
 
-print(dic["2011"]["9"][1])
-dic['2011']['9'][3] = "This is the new data"
-dic['2012'] = '10'
+all_d = wd()
+
+all_d.add_data("2013","9","1","this is the data")
+all_d.add_data("2013","8","2","this is the data")
+
+
+print(all_d.get_d())
 
 
 
-print(dic)
+# print(all_d.get_d())
+
+# dic = {
+#     "2011": {"9": {"1": "data",
+#                    "2": "data", },
+#              "8": {"1": "data",
+#                    "2": "data",
+#                    }
+#
+#              },
+#     "2012": {"9": {"1": "data",
+#                    "2": "data", },
+#              "8": {"1": "data",
+#                    "2": "data",
+#                    }
+#
+#              },
+# }
+#
+#
+# dic["2011"]['7'] = {3:"data"}
+#
+# dic['2012'] = {"1" : {}}
+# print(dic)

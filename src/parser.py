@@ -4,6 +4,8 @@ from logging import exception
 from os import listdir
 from ast import literal_eval
 from calendar import month_abbr
+from flatbuffers.flexbuffers import Object
+
 
 #dataclass for the Files Data
 @dataclass
@@ -36,19 +38,71 @@ class Files:
 class WeathreData():
 
     def __init__(self):
-        self.data = {
-            "year":{"month":{"date":1}}
-                }
+        dic = {
+            "2011":{"9":{"1":"data",
+                         "2" : "data",},
+                    "8":{"1":"data",
+                         "2" : "data",
+                         }
+
+                    },
+            "2012": {"9": {"1": "data",
+                           "2": "data", },
+                     "8": {"1": "data",
+                           "2": "data",
+                           }
+
+                     },
+        }
+        self.data = dic
 
     def add_data(self,year,month,date,datsa):
-        self.data[year] = month
-        self.data[month] = date
-        self.data[date] = datsa
+        """
+        Add weather data for a specific date to the internal data structure.
+
+        Args:
+            year (str): The year of the data entry.
+            month (str): The month of the data entry.
+            date (str): The date of the data entry.
+            datsa (Files): An instance of `Files` containing weather data to be added.
+
+        This method updates the internal dictionary `self.data` by adding the
+        provided weather data under the specified year, month, and date.
+        """
+
+        if year in self.data.keys():
+            if month in self.data[year].keys():
+                self.data[year][month][date] = datsa
+            else:
+                self.data[year][month] = {}
+                self.data[year][month][date] = datsa
+        else:
+            self.data[year] = {}
+            self.data[year][month] = {}
+            self.data[year][month][date] = datsa
+
 
     def get_data(self,year,month,date):
 
+        """
+        Retrieve weather data for a specific date from the internal data structure.
+
+        Args:
+            year (int or str): The year of the data entry.
+            month (int or str): The month of the data entry.
+            date (int or str): The date of the data entry.
+
+        Returns:
+            Files: An instance of `Files` containing the weather data for the specified date,
+            or prints "No Data Found" if the data is unavailable.
+        """
+
         try:
-            feteched_data =  self.data[str(year),str(month),str(date)]
+            year = str(year)
+            month = str(month)
+            date = str(date)
+
+            feteched_data =  self.data[year][month][date]
             return feteched_data
         except:
             print("No Data Found")
@@ -88,45 +142,6 @@ def conversion(dic:dict) -> dict:
 
     return new_dic
 
-# parser
-def importing_file_data(files_name_lst:list) -> dict:
-    """
-    Imports weather data from a list of CSV file names, processes each file's content,
-    and returns a dictionary mapping file names to lists of `Files` dataclass instances.
-
-    Args:
-        files_name_lst (list): A list of CSV file names to be processed.
-
-    Returns:
-        dict: A dictionary where each key is a file name and each value is a list of
-        `Files` instances containing the processed data from the corresponding file.
-    """
-    # data structure to store the file name with its data
-    files_name_dir = {}
-    for file_names in files_name_lst:
-
-        #opening file
-        with open(f'{path + "/" + file_names}', mode='r') as file:
-
-            # reading all row of the file
-            reader = csv.DictReader(file)
-
-            files = []
-            for row in reader:
-
-                # removing spaces and converting data into appropriate type
-                row = conversion(row)
-                files.append(Files(**row))
-
-            #storing in the dic
-            file_name = file_names.replace(path, "").replace("Murree_weather_","").replace(".txt","")
-            files_name_dir[f'{file_name}'] = files
-
-    return files_name_dir
-
-
-
-
 
 def get_month(month_name):
 
@@ -148,20 +163,40 @@ def get_month(month_name):
     return str(month)
 
 
-def parser(imported_data:dict)->None:
+def parser( files_name_lst:list )-> Object:
+
 
     """
-    Parse imported weather data and organize it into a structured format.
+    Parse a list of weather data files and organize the data into a structured format.
 
     Args:
-        imported_data (dict): A dictionary where keys are strings representing
-        file identifiers and values are lists of `Files` instances containing
-        weather data.
+        files_name_lst (list): A list of file names containing weather data.
 
     Returns:
-        WeathreData: An instance of `WeathreData` containing the organized
-        weather data by year, month, and date.
+        WeathreData: An instance of `WeathreData` containing the parsed and organized weather data.
     """
+
+    files_name_dir = {}
+    for file_names in files_name_lst:
+
+        #opening file
+        with open(f'{path + "/" + file_names}', mode='r') as file:
+
+            # reading all row of the file
+            reader = csv.DictReader(file)
+
+            files = []
+            for row in reader:
+
+                # removing spaces and converting data into appropriate type
+                row = conversion(row)
+                files.append(Files(**row))
+
+            #storing in the dic
+            file_name = file_names.replace(path, "").replace("Murree_weather_","").replace(".txt","")
+            files_name_dir[f'{file_name}'] = files
+
+    imported_data = files_name_dir
 
     all_weather_data = WeathreData()
     for key, value in imported_data.items():
@@ -174,24 +209,23 @@ def parser(imported_data:dict)->None:
         for indivual_value in value:
 
             date = indivual_value.PKT.split("-")
-
             date_y = date[0]
             date_m = date[1]
             date_d = date[2]
             if year  == date_y and month == date_m:
                 all_weather_data.add_data(year = date_y,month = date_m,date = date_d,datsa=indivual_value)
+                # print("yes")
 
     return all_weather_data
+
+
 
 #path to the dataset directory
 path = "/Users/fasihmuhammadvirk/Desktop/Github/Weather-Man/data"
 files_lst = listdir(path)
+data = parser(files_lst)
 
-imported_data = importing_file_data(files_lst)
-
-data = parser(imported_data)
-
-data.get_data(2000,26,2)
+print(data.get_data(2004,7,2))
 
 
 
