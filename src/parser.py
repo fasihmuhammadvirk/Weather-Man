@@ -65,15 +65,16 @@ return:
     return new_dic
 
 # parser
-def parser(files_name_lst:list) -> None:
+def parser(files_name_lst:list) -> dict:
     """
-    Take a List of filename and prase the data of each file name in the list.
+    Take a List of filename and prase the data of each file name in the list and return a dictionary
+    with the filename as key and their data as values.
 
     Args:
         files_name_lst: take a list conditioning of filenames
 
     Return:
-        None
+        dict: return a dictionary
     """
     # data structure to store the file name with its data
     files_name_dir = {}
@@ -96,13 +97,14 @@ def parser(files_name_lst:list) -> None:
             file_name = file_names.replace(path, "")
             files_name_dir[f'{file_name}'] = files
 
+    return files_name_dir
+
 
 #path to the dataset directory
 path = "/Users/fasihmuhammadvirk/Desktop/Github/Weather-Man/data"
 files_lst = listdir(path)
 
 # uploading data
-parser(files_lst)
-
+data = parser(files_lst)
 
 
