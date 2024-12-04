@@ -12,6 +12,8 @@ class Files:
     MaxTemperatureC: any
     MeanTemperatureC: any
     MinTemperatureC: any
+
+
     DewPointC: any
     MeanDewPointC: any
     MinDewpointC: any
