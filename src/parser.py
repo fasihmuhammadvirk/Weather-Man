@@ -38,23 +38,7 @@ class Files:
 class WeathreData():
 
     def __init__(self):
-        dic = {
-            "2011":{"9":{"1":"data",
-                         "2" : "data",},
-                    "8":{"1":"data",
-                         "2" : "data",
-                         }
-
-                    },
-            "2012": {"9": {"1": "data",
-                           "2": "data", },
-                     "8": {"1": "data",
-                           "2": "data",
-                           }
-
-                     },
-        }
-        self.data = dic
+        self.data = {}
 
     def add_data(self,year,month,date,datsa):
         """
