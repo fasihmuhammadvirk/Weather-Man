@@ -1,10 +1,8 @@
 import csv
 from dataclasses import dataclass
-from logging import exception
 from os import listdir
 from ast import literal_eval
 from calendar import month_abbr
-from flatbuffers.flexbuffers import Object
 
 
 #dataclass for the Files Data
@@ -147,7 +145,7 @@ def get_month(month_name):
     return str(month)
 
 
-def parser( files_name_lst:list )-> Object:
+def parser( files_name_lst:list )-> object:
 
 
     """
