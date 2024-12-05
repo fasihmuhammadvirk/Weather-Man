@@ -1,6 +1,5 @@
+from src.parsers import get_files_data
 from os import listdir
-from src.parser import parsing_files_data
-from src.data_strucutres import  lst_of_files_object
 
 if __name__ == "__main__":
 
@@ -8,13 +7,9 @@ if __name__ == "__main__":
     path = "/Users/fasihmuhammadvirk/Desktop/Github/Weather-Man/data"
 
     # converting the files into a list
-    files_lst = listdir(path)
+    list_of_files = listdir(path)
 
     # parsing the files data
-    parsing_files_data(path,files_lst)
-
-    # running and testing data from data structure
-    data = lst_of_files_object
+    data = get_files_data(path , list_of_files)
     print(data[0])
-
 

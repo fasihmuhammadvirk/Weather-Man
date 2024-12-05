@@ -1,7 +1,7 @@
 from ast import literal_eval
-from src.data_strucutres import formated_dic
+import csv
 
-def formate_key_value(dic:dict) -> dict:
+def clean_and_convert_dic(dic:dict) -> dict:
 
     """
     Processes a dictionary by removing spaces and slashes from keys and converting values to appropriate data types.
@@ -13,28 +13,44 @@ def formate_key_value(dic:dict) -> dict:
         dict: A new dictionary with formatted keys and converted values.
     """
 
+    formated_dic = {}
+
     for key, value in dic.items():
-        new_key = key.replace(" ", "").replace("/", "")
+
+        # removing space from start and end also replacing spaces b/w words into dashes `_`
+        new_key = key.strip().replace(" ", "_").replace("/", "").lower()
 
         # converting into appropriate data type
+        if value.isdigit():
 
-        # place PKT and Event in the if statement because they are not properly formated so, cant be converted
-        if new_key == "PKT":
-            formated_dic[new_key] = value
-
-        elif new_key == "Events":
-            formated_dic[new_key] = value
+            # converting each value to its desire datatype
+            formated_dic[new_key] = literal_eval(value)
 
         else:
 
-            # checking for null value
-            if value == "":
-                formated_dic[new_key] = value
-
-            else:
-                # converting each value to its desire datatype
-                formated_dic[new_key] = literal_eval(value)
+            formated_dic[new_key] = value
 
     return formated_dic
+
+def read_file_data(path : str , file_name : str) -> object:
+
+    """
+    Reads data from a CSV file and returns it as a dictionary-like object.
+
+    Args:
+        path (str): The directory path where the file is located.
+        file_name (str): The name of the file to be read.
+
+    Returns:
+        object: A CSV reader object that iterates over lines in the given file as dictionaries.
+    """
+
+    # opening the file by given path and filename
+    file = open(f'{path + "/" + file_name}', mode='r')
+
+    # reading the data of the file
+    file_data_as_dictionary = csv.DictReader(file)
+
+    return file_data_as_dictionary
 
 
