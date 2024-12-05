@@ -22,13 +22,13 @@ def clean_and_convert_dic(dic:dict) -> dict:
 
         # converting into appropriate data type
         if value.isdigit():
-
             # converting each value to its desire datatype
-            formated_dic[new_key] = literal_eval(value)
-
+            formated_dic[new_key] = literal_eval(value.strip())
         else:
-
-            formated_dic[new_key] = value
+            if value == "":
+                formated_dic[new_key] = 0
+            else:
+                formated_dic[new_key] = value
 
     return formated_dic
 
