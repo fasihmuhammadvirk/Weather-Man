@@ -33,3 +33,5 @@ def parsing_files_data(path:str, files_name_lst : list )-> list:
                 lst_of_files_object.append(WeatherData(**rows))
 
     return lst_of_files_object
+
+
