@@ -4,7 +4,6 @@ from src.data_strucutres import  lst_of_files_object
 
 if __name__ == "__main__":
 
-
     # path to the dataset directory
     path = "/Users/fasihmuhammadvirk/Desktop/Github/Weather-Man/data"
     files_lst = listdir(path)

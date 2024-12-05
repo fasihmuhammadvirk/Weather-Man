@@ -33,4 +33,3 @@ class WeatherData:
 
 # formated dictionary for format_key_value functions in utils
 formated_dic = {}
-

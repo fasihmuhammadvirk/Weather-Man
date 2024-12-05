@@ -15,15 +15,16 @@ def parsing_files_data(path:str, files_name_lst : list )-> list:
         lst_of_file_object: A List of instance of `WeatherData` containing the parsed and organized weather data.
     """
 
+    # iteration through each file from file list
     for file_names in files_name_lst:
 
-        #opening file
+        # opening file
         with open(f'{path + "/" + file_names}', mode='r') as file:
 
             # reading the files as a dictionary
-            reader = csv.DictReader(file)
+            read_file_data_as_dic = csv.DictReader(file)
 
-            for rows in reader:
+            for rows in read_file_data_as_dic:
 
                 # using the function to remove spaces from header and converting values into desire datatypes
                 rows = formate_key_value(rows)

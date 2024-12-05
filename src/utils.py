@@ -27,7 +27,6 @@ def formate_key_value(dic:dict) -> dict:
 
         else:
 
-            # data structure
             # checking for null value
             if value == "":
                 formated_dic[new_key] = value
