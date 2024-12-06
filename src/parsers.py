@@ -50,5 +50,3 @@ def parse_file_data(file_data : dict) -> object:
 
     return WeatherData(**formated_file_data)
 
-
-
