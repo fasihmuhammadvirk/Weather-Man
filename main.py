@@ -21,6 +21,7 @@ if __name__ == "__main__":
 
     index_for_date = 1
 
+    # iterating through all the possible arguments for reports
     for index_for_mode in range(0 , len(arguments) , 2):
         mode = arguments[index_for_mode]
         date = arguments[index_for_date]
