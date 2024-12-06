@@ -11,8 +11,6 @@ if __name__ == "__main__":
     # path to the dataset directory
     # "/Users/fasihmuhammadvirk/Desktop/Github/Weather-Man/data"
 
-
-
     # creating a list of all the files in the provided directory
     list_of_files = listdir(path)
 
@@ -23,6 +21,7 @@ if __name__ == "__main__":
 
     # iterating through all the possible arguments for reports
     for index_for_mode in range(0 , len(arguments) , 2):
+
         mode = arguments[index_for_mode]
         date = arguments[index_for_date]
 

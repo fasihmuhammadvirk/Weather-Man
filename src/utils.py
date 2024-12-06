@@ -23,11 +23,15 @@ def clean_and_convert_dic(dic:dict) -> dict:
 
         # converting into appropriate data type
         if value.isdigit():
+
             # converting each value to its desire datatype
             formated_dic[new_key] = literal_eval(value.strip())
+
         else:
+
             if value == "":
                 formated_dic[new_key] = 0
+
             else:
                 formated_dic[new_key] = value
 
@@ -60,11 +64,11 @@ def get_month_name_and_date(date : str) -> str:
     # taking a date formate and providing the month name and year
     date_in_list = date.split("-")
 
-    test_date = datetime(int(date_in_list[0]),int(date_in_list[1]),int(date_in_list[2]))
+    test_date = datetime(int(date_in_list[0]) , int(date_in_list[1]) , int(date_in_list[2]))
 
     month_name = test_date.strftime("%B")
 
-    return str(month_name + " " +date_in_list[2])
+    return str(month_name + " " + date_in_list[2])
 
 def color_text_red(text : str) -> str:
 
@@ -84,6 +88,7 @@ def get_year_month(date : str) -> tuple:
     if len(date) == 2:
         year = date[0]
         month = date[1]
+
     else:
         year = date[0]
         month = None

@@ -27,6 +27,3 @@ class WeatherData:
     cloudcover: any
     events: any
     winddirdegrees: any
-
-
-

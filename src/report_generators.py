@@ -3,7 +3,6 @@ from src.compute_reports import compute_average_report_for_month_data
 from src.compute_reports import compute_bar_chart_of_eachday
 from src.utils import get_year_month
 
-
 def display_computed_result(computed_report_results : any) -> None:
 
     """
@@ -23,14 +22,15 @@ def display_computed_result(computed_report_results : any) -> None:
     """
 
     if isinstance(computed_report_results,list):
+
         for bar_char in computed_report_results:
             print(bar_char)
 
     elif isinstance(computed_report_results[0],dict):
 
-        maximum_tempperature  = "Highest: {}C on {}".format(computed_report_results[0]["max_temp"], computed_report_results[0]["date"])
-        lowest_temperature = "Lowest: {}C on {}".format(computed_report_results[1]["low_temp"], computed_report_results[1]["date"])
-        max_humidity = "Humidity: {}% on {}".format (computed_report_results[2]["max_humidity"], computed_report_results[2]["date"])
+        maximum_tempperature  = "Highest: {}C on {}".format(computed_report_results[0]["max_temp"] , computed_report_results[0]["date"])
+        lowest_temperature = "Lowest: {}C on {}".format(computed_report_results[1]["low_temp"] , computed_report_results[1]["date"])
+        max_humidity = "Humidity: {}% on {}".format (computed_report_results[2]["max_humidity"] , computed_report_results[2]["date"])
 
         print(maximum_tempperature)
         print(lowest_temperature)
@@ -66,6 +66,7 @@ def generate_and_display_report(mode : str , data : list , date : str) -> None:
 
     # if the argument have the value of month
     if month is not None:
+
         # if the given mode is -c
         if mode == "-c":
             computational_results = compute_bar_chart_of_eachday(year,month,data)
@@ -81,8 +82,10 @@ def generate_and_display_report(mode : str , data : list , date : str) -> None:
 
     # if the given mode is -e
     elif mode == '-e':
+
         computational_results = compute_highest_report_for_year_data(year,data)
         display_computed_result(computational_results)
 
     else:
+
         print("This is Not a Define Mode")

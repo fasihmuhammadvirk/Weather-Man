@@ -99,9 +99,9 @@ def compute_average_report_for_month_data(year : str , month : str , weather_dat
             sum_mean_humidity += wd_object.mean_humidity
 
     # calculating the average
-    average_highest_temperature = sum_highest_temperature// total_values
-    average_lowest_temperature = sum_lowest_temperature//total_values
-    average_mean_humidity = sum_mean_humidity//total_values
+    average_highest_temperature = sum_highest_temperature // total_values
+    average_lowest_temperature = sum_lowest_temperature // total_values
+    average_mean_humidity = sum_mean_humidity // total_values
 
     # returning a tuple of average values
     return average_highest_temperature , average_lowest_temperature , average_mean_humidity
@@ -134,12 +134,11 @@ def compute_bar_chart_of_eachday(year : str , month : str , weather_data_object_
             index += 1
 
             # creating a string containing information of index , temperature and the horizontal bar chart
-            highest_temperature = "{} {} {}".format(index, color_text_red("*")*wd_object.max_temperaturec, str(wd_object.max_temperaturec)+"C" )
-            lowest_temperature = "{} {} {}".format(index, color_text_cyan("-") * wd_object.min_temperaturec, str(wd_object.min_temperaturec) + "C")
+            highest_temperature = "{} {} {}".format(index , color_text_red("*") * wd_object.max_temperaturec , str(wd_object.max_temperaturec)+"C" )
+            lowest_temperature = "{} {} {}".format(index , color_text_cyan("-") * wd_object.min_temperaturec , str(wd_object.min_temperaturec) + "C")
 
             bar_chart_for_eachday.append(highest_temperature)
             bar_chart_for_eachday.append(lowest_temperature)
 
     # returning a list
     return bar_chart_for_eachday
-
