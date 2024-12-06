@@ -1,6 +1,8 @@
 from src.compute_reports import compute_highest_report_for_year_data
 from src.compute_reports import compute_average_report_for_month_data
 from src.compute_reports import compute_bar_chart_of_eachday
+from src.utils import get_year_month
+
 
 def display_computed_result(computed_report_results : any) -> None:
 
@@ -20,7 +22,11 @@ def display_computed_result(computed_report_results : any) -> None:
         None
     """
 
-    if isinstance(computed_report_results[0],dict):
+    if isinstance(computed_report_results,list):
+        for bar_char in computed_report_results:
+            print(bar_char)
+
+    elif isinstance(computed_report_results[0],dict):
 
         maximum_tempperature  = "Highest: {}C on {}".format(computed_report_results[0]["max_temp"], computed_report_results[0]["date"])
         lowest_temperature = "Lowest: {}C on {}".format(computed_report_results[1]["low_temp"], computed_report_results[1]["date"])
@@ -29,11 +35,6 @@ def display_computed_result(computed_report_results : any) -> None:
         print(maximum_tempperature)
         print(lowest_temperature)
         print(max_humidity)
-
-    elif isinstance(computed_report_results,list):
-
-        for bar_char in computed_report_results:
-            print(bar_char)
 
     else:
 
@@ -46,7 +47,7 @@ def display_computed_result(computed_report_results : any) -> None:
         print(maximum_average_humidity)
 
 
-def generate_and_display_report(mode : str , data : list , year : str , month = None or str) -> None:
+def generate_and_display_report(mode : str , data : list , date : str) -> None:
 
     """
     Generates and displays a weather report based on the specified mode and data.
@@ -61,19 +62,27 @@ def generate_and_display_report(mode : str , data : list , year : str , month = 
         None
     """
 
+    year , month = get_year_month(date)
+
     # if the argument have the value of month
     if month is not None:
         # if the given mode is -c
-        if mode == "c":
+        if mode == "-c":
             computational_results = compute_bar_chart_of_eachday(year,month,data)
             display_computed_result(computational_results)
 
         # if the given mode is -a
-        else:
+        elif mode == '-a':
             computational_results = compute_average_report_for_month_data(year,month,data)
             display_computed_result(computational_results)
 
+        else:
+            print("This is Not a Define Mode")
+
     # if the given mode is -e
-    else:
+    elif mode == '-e':
         computational_results = compute_highest_report_for_year_data(year,data)
         display_computed_result(computational_results)
+
+    else:
+        print("This is Not a Define Mode")

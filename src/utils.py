@@ -70,3 +70,16 @@ def color_text_red(text):
 
 def color_text_cyan(text):
     return "\033[96m{}\033[00m" .format(text)
+
+def get_year_month(date : str) -> tuple:
+
+    date = date.split("/")
+
+    if len(date) == 2:
+        year = date[0]
+        month = date[1]
+    else:
+        year = date[0]
+        month = None
+
+    return year, month

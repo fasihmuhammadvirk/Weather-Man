@@ -128,7 +128,7 @@ def compute_bar_chart_of_eachday(year : str , month : str , weather_data_object_
     for wd_object in weather_data_object_list:
 
         # checking for the object that has the same year and month as desired
-        if year in wd_object.pkt and month in wd_object.pkt.split('-')[1]:
+        if year in wd_object.pkt and month == wd_object.pkt.split('-')[1]:
 
             # keeping count of each index
             index += 1
