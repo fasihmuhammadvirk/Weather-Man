@@ -5,17 +5,13 @@ import sys
 
 if __name__ == "__main__":
 
-    arguments = sys.argv[1:]
-
-
+    path = sys.argv[1]
+    arguments = sys.argv[2:]
 
     # path to the dataset directory
     # "/Users/fasihmuhammadvirk/Desktop/Github/Weather-Man/data"
 
-    # saving the command line arguments
-    path = arguments[0]
-    mode = arguments[1]
-    date = arguments[2]
+
 
     # creating a list of all the files in the provided directory
     list_of_files = listdir(path)
@@ -23,5 +19,14 @@ if __name__ == "__main__":
     # parsing the files data
     data = get_files_data(path , list_of_files)
 
-    # generating reports
-    generate_and_display_report(mode ,data, date)
+    index_for_date = 1
+
+    for index_for_mode in range(0 , len(arguments) , 2):
+        mode = arguments[index_for_mode]
+        date = arguments[index_for_date]
+
+        # generating reports
+        generate_and_display_report(mode ,data, date)
+        print('')
+
+        index_for_date += 2
