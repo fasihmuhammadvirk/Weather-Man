@@ -31,32 +31,32 @@ def compute_highest_report_for_year_data(year : str , weather_data_object_list :
         "date": ""
     }
 
-    # iterating through each of the object in weather data wd_object list
-    for wd_object in weather_data_object_list:
+    # iterating through each of the object in weather data weather_data_object list
+    for weather_data_object in weather_data_object_list:
 
         # checking if the give year is in the object
-        if year in wd_object.pkt:
+        if year in weather_data_object.pkt:
 
             # checking if the maximum temperature is greater that current
-            if wd_object.max_temperaturec >= current_highest_temperature["max_temp"]:
+            if weather_data_object.max_temperaturec >= current_highest_temperature["max_temp"]:
 
-                current_highest_temperature["max_temp"] = wd_object.max_temperaturec
+                current_highest_temperature["max_temp"] = weather_data_object.max_temperaturec
 
-                current_highest_temperature["date"] = get_month_name_and_date(wd_object.pkt)
+                current_highest_temperature["date"] = get_month_name_and_date(weather_data_object.pkt)
 
             # checking if the minimum temperature is greater that current
-            if wd_object.min_temperaturec >= current_lowest_temperature["low_temp"]:
+            if weather_data_object.min_temperaturec >= current_lowest_temperature["low_temp"]:
 
-                current_lowest_temperature["low_temp"] = wd_object.min_temperaturec
+                current_lowest_temperature["low_temp"] = weather_data_object.min_temperaturec
 
-                current_lowest_temperature["date"] = get_month_name_and_date(wd_object.pkt)
+                current_lowest_temperature["date"] = get_month_name_and_date(weather_data_object.pkt)
 
             # checking if the maximum humidity is greater that current
-            if wd_object.max_humidity >= current_highest_humidity["max_humidity"]:
+            if weather_data_object.max_humidity >= current_highest_humidity["max_humidity"]:
 
-                current_highest_humidity["max_humidity"] = wd_object.max_humidity
+                current_highest_humidity["max_humidity"] = weather_data_object.max_humidity
 
-                current_highest_humidity["date"] = get_month_name_and_date(wd_object.pkt)
+                current_highest_humidity["date"] = get_month_name_and_date(weather_data_object.pkt)
 
     # returning a tuple of dictionaries of maximum - minimum temperature and maximum humidity
     return current_highest_temperature , current_lowest_temperature , current_highest_humidity
@@ -85,18 +85,18 @@ def compute_average_report_for_month_data(year : str , month : str , weather_dat
     total_values = 0
 
     # iterating through each object from the weather data object list
-    for wd_object in weather_data_object_list:
+    for weather_data_object in weather_data_object_list:
 
         # checking for the object that has the same year and month as desired
-        if year in wd_object.pkt and month in wd_object.pkt.split('-')[1]:
+        if year in weather_data_object.pkt and month in weather_data_object.pkt.split('-')[1]:
 
             # keeping a count of each value
             total_values += 1
 
             # doing the sum of all value
-            sum_highest_temperature += wd_object.max_temperaturec
-            sum_lowest_temperature += wd_object.min_temperaturec
-            sum_mean_humidity += wd_object.mean_humidity
+            sum_highest_temperature += weather_data_object.max_temperaturec
+            sum_lowest_temperature += weather_data_object.min_temperaturec
+            sum_mean_humidity += weather_data_object.mean_humidity
 
     # calculating the average
     average_highest_temperature = sum_highest_temperature // total_values
@@ -125,17 +125,17 @@ def compute_bar_chart_of_eachday(year : str , month : str , weather_data_object_
     bar_chart_for_eachday = []
 
     # iterating through each object of the weather data object list
-    for wd_object in weather_data_object_list:
+    for weather_data_object in weather_data_object_list:
 
         # checking for the object that has the same year and month as desired
-        if year in wd_object.pkt and month == wd_object.pkt.split('-')[1]:
+        if year in weather_data_object.pkt and month == weather_data_object.pkt.split('-')[1]:
 
             # keeping count of each index
             index += 1
 
             # creating a string containing information of index , temperature and the horizontal bar chart
-            highest_temperature = "{} {} {}".format(index , color_text_red("*") * wd_object.max_temperaturec , str(wd_object.max_temperaturec)+"C" )
-            lowest_temperature = "{} {} {}".format(index , color_text_cyan("-") * wd_object.min_temperaturec , str(wd_object.min_temperaturec) + "C")
+            highest_temperature = "{} {} {}".format(index , color_text_red("*") * weather_data_object.max_temperaturec , str(weather_data_object.max_temperaturec)+"C" )
+            lowest_temperature = "{} {} {}".format(index , color_text_cyan("-") * weather_data_object.min_temperaturec , str(weather_data_object.min_temperaturec) + "C")
 
             bar_chart_for_eachday.append(highest_temperature)
             bar_chart_for_eachday.append(lowest_temperature)
