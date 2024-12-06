@@ -56,9 +56,17 @@ def read_file_data(path : str , file_name : str) -> object:
 
 
 def get_month_name_and_date(date):
+
     date_in_list = date.split("-")
+
     test_date = datetime(int(date_in_list[0]),int(date_in_list[1]),int(date_in_list[2]))
+
     month_name = test_date.strftime("%B")
+
     return str(month_name + " " +date_in_list[2])
 
+def color_text_red(text):
+    return "\033[91m{}\033[00m".format(text)
 
+def color_text_cyan(text):
+    return "\033[96m{}\033[00m" .format(text)

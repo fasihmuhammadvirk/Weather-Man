@@ -1,7 +1,10 @@
 from src.parsers import get_files_data
 from os import listdir
 
-from src.reports import get_report_by_year, get_report_by_month, show_report_by_month
+from src.report_generators import display_computed_result
+from src.report_generators import compute_highest_report_for_year_data
+from src.report_generators import compute_average_report_for_month_data
+from src.report_generators import compute_bar_chart_of_eachday
 
 if __name__ == "__main__":
 
@@ -13,8 +16,9 @@ if __name__ == "__main__":
 
     # parsing the files data
     data = get_files_data(path , list_of_files)
-    # report = get_report_by_year("2006",data)
-    report = get_report_by_month("2004","8",data)
-    show_report_by_month("2006","8",data)
 
-    # print(report)
+    new_data = compute_bar_chart_of_eachday("2004","6",data)
+
+    # new_data = compute_highest_report_for_year_data("2004",data)
+    # new_data = compute_average_report_for_month_data("2006","8",data)
+    display_computed_result(new_data)
