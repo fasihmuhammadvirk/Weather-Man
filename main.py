@@ -1,5 +1,3 @@
-from calendar import month
-
 from src.parsers import get_files_data
 from os import listdir
 from src.report_generators import generate_and_display_report

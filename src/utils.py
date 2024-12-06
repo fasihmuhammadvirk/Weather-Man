@@ -55,8 +55,9 @@ def read_file_data(path : str , file_name : str) -> object:
     return file_data_as_dictionary
 
 
-def get_month_name_and_date(date):
+def get_month_name_and_date(date : str) -> str:
 
+    # taking a date formate and providing the month name and year
     date_in_list = date.split("-")
 
     test_date = datetime(int(date_in_list[0]),int(date_in_list[1]),int(date_in_list[2]))
@@ -65,14 +66,19 @@ def get_month_name_and_date(date):
 
     return str(month_name + " " +date_in_list[2])
 
-def color_text_red(text):
+def color_text_red(text : str) -> str:
+
+    # converting the text in the string red
     return "\033[91m{}\033[00m".format(text)
 
-def color_text_cyan(text):
+def color_text_cyan(text : str) -> str:
+
+    # converting the text in the string cyan
     return "\033[96m{}\033[00m" .format(text)
 
 def get_year_month(date : str) -> tuple:
 
+    # converting the date into year and month
     date = date.split("/")
 
     if len(date) == 2:
