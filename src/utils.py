@@ -1,5 +1,6 @@
 from ast import literal_eval
 import csv
+from datetime import datetime
 
 def clean_and_convert_dic(dic:dict) -> dict:
 
@@ -52,5 +53,12 @@ def read_file_data(path : str , file_name : str) -> object:
     file_data_as_dictionary = csv.DictReader(file)
 
     return file_data_as_dictionary
+
+
+def get_month_name_and_date(date):
+    date_in_list = date.split("-")
+    test_date = datetime(int(date_in_list[0]),int(date_in_list[1]),int(date_in_list[2]))
+    month_name = test_date.strftime("%B")
+    return str(month_name + " " +date_in_list[2])
 
 
