@@ -1,17 +1,14 @@
-import sys
 from src.parsers import get_files_data , get_parsed_data
 from src.utils import validate_input , process_input , switch_and_date_generator
 from src.report_generators import generate_and_display_report
 
 if __name__ == "__main__":
 
-    input_values = sys.argv[1:]
-
-    input_is_valid = validate_input(input_values)
+    input_is_valid = validate_input()
 
     if input_is_valid:
 
-        path , list_of_switch_date = process_input(input_values)
+        path , list_of_switch_date = process_input()
 
         # getting and parsing data
         list_of_files_data = get_files_data(path)

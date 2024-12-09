@@ -1,3 +1,4 @@
+import sys
 from ast import literal_eval
 import csv
 from datetime import datetime
@@ -206,7 +207,9 @@ def validate_switches_and_date(list_of_switches_and_dates : list) -> bool:
 
     return valid_input
 
-def validate_input(command_line_arguments : list) -> bool:
+def validate_input() -> bool:
+
+    command_line_arguments = sys.argv[1:]
 
     valid_path = command_line_arguments[0]
 
@@ -225,7 +228,9 @@ def validate_input(command_line_arguments : list) -> bool:
         return False
 
 
-def process_input(command_line_arguments : list) -> tuple:
+def process_input() -> tuple:
+
+    command_line_arguments = sys.argv[1:]
 
     path = command_line_arguments[0]
     list_of_switches_and_date = command_line_arguments[1:]
