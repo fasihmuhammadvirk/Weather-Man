@@ -100,8 +100,10 @@ def get_year_month(date : str) -> tuple:
 def switch_and_date_generator(list_of_switches_and_dates : list) -> tuple:
 
     # generating the value of each switch and date from the list
-    index_to_find_date = 1
+
     for index_to_find_switch in range(0 , len(list_of_switches_and_dates) , 2):
+
+        index_to_find_date = index_to_find_switch + 1
 
         switch = list_of_switches_and_dates[index_to_find_switch]
         date = list_of_switches_and_dates[index_to_find_date]
@@ -127,7 +129,7 @@ def validate_date(year : str , month : str) -> bool:
                 return False
 
     else:
-        print("This is Not a Valid Year, we donot have data on this year")
+        print("This is Not a Valid Year, we do not have data on this year")
         return False
 
 
@@ -136,7 +138,7 @@ def validate_switch(switch : str , month : str) -> bool:
     # list of the valid switches
     list_of_valid_switches = ['-e', '-a', '-c']
 
-    # checking if the switch enterd is correct
+    # checking if the switch entered is correct
     if switch in list_of_valid_switches:
 
         if switch == list_of_valid_switches[0] and month is not None:
@@ -162,7 +164,7 @@ def validate_switch(switch : str , month : str) -> bool:
 
 def validate_switches_and_date(list_of_switches_and_dates : list) -> bool:
 
-    # checking if the user has enter more than three values of switch and date
+    # checking if the user has entered more than three values of switch and date
     if len(list_of_switches_and_dates)//2 > 3:
         print("Please Enter only three values of switch and date to get Report")
         return False
@@ -172,24 +174,21 @@ def validate_switches_and_date(list_of_switches_and_dates : list) -> bool:
         print("One of the Switch or Date is Missing")
         return False
 
-    index_to_find_date = 1
     valid_input = False
 
     for index_to_find_switch in range(0, len(list_of_switches_and_dates), 2):
 
+        index_to_find_date = index_to_find_switch + 1
+
         # getting value of each switch and its date
         switch = list_of_switches_and_dates[index_to_find_switch]
         date = list_of_switches_and_dates[index_to_find_date]
-
-        # index to find date in the list
-        index_to_find_date += 2
 
         # converting the date into year and month
         year , month = get_year_month(date)
 
         #validating if the format is correct also the date
         is_year_month_valid = validate_date(year , month)
-
 
         if is_year_month_valid:
 

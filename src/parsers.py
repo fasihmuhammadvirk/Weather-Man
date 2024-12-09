@@ -24,11 +24,10 @@ def get_parsed_data(list_of_weather_data_objects : list) -> list:
 def get_files_data(path : str) -> list:
 
     """
-    Returns a list of file data as an dic object.
+    Returns a list of file data as a dic object.
 
     Args:
         path (str) : Path to the directory containing all files.
-        list_of_file_data_as_dic_object (list): A list of files containing weather data.
 
     Returns:
         list_of_file_object: A List of instance of `WeatherData` containing the parsed and organized weather data.

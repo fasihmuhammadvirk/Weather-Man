@@ -3,7 +3,8 @@ from src.utils import get_month_name_and_date , color_text_red , color_text_cyan
 def compute_highest_report_for_year_data(year : str , weather_data_object_list : list) -> tuple:
 
     """
-    Computes the highest and lowest temperature and highest humidity for a given year from a list of weather_data_object_list objects.
+    Computes the highest and lowest temperature and highest humidity for a given year from a list of
+    weather_data_object_list objects.
     
     Args:
         year (str): The year to filter the weather_data_object_list by.
@@ -115,7 +116,7 @@ def compute_bar_chart_of_eachday(year : str , month : str , weather_data_object_
     """
 
     index = 0
-    bar_chart_for_eachday = []
+    list_of_bar_chart_for_eachday = []
 
     # iterating through each object of the weather data object list
     for weather_data_object in weather_data_object_list:
@@ -127,11 +128,16 @@ def compute_bar_chart_of_eachday(year : str , month : str , weather_data_object_
             index += 1
 
             # creating a string containing information of index , temperature and the horizontal bar chart
-            highest_temperature = "{} {} {}".format(index , color_text_red("*") * weather_data_object.max_temperaturec , str(weather_data_object.max_temperaturec)+"C" )
-            lowest_temperature = "{} {} {}".format(index , color_text_cyan("-") * weather_data_object.min_temperaturec , str(weather_data_object.min_temperaturec) + "C")
+            highest_temperature = "{} {} {}".format(index , color_text_red("*") *
+                                                    weather_data_object.max_temperaturec ,
+                                                    str(weather_data_object.max_temperaturec)+"C" )
+            
+            lowest_temperature = "{} {} {}".format(index , color_text_cyan("-") *
+                                                   weather_data_object.min_temperaturec ,
+                                                   str(weather_data_object.min_temperaturec) + "C")
 
-            bar_chart_for_eachday.append(highest_temperature)
-            bar_chart_for_eachday.append(lowest_temperature)
+            list_of_bar_chart_for_eachday.append(highest_temperature)
+            list_of_bar_chart_for_eachday.append(lowest_temperature)
 
     # returning a list
-    return bar_chart_for_eachday
+    return list_of_bar_chart_for_eachday
