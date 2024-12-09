@@ -96,7 +96,7 @@ def get_year_month(date : str) -> tuple:
 
     return year, month
 
-def get_switch_and_date(list_of_switches_and_dates : list) -> tuple:
+def switch_and_date_generator(list_of_switches_and_dates : list) -> tuple:
 
     # generating the value of each switch and date from the list
     index_to_find_date = 1
