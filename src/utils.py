@@ -1,6 +1,7 @@
 from ast import literal_eval
 import csv
 from datetime import datetime
+import os
 
 def clean_and_convert_dic(dic:dict) -> dict:
 
@@ -22,14 +23,14 @@ def clean_and_convert_dic(dic:dict) -> dict:
         new_key = key.strip().replace(" ", "_").replace("/", "").lower()
 
         # converting into appropriate data type
-        if value.isdigit():
+        if value.strip("-").replace(".","").isdigit():
 
             # converting each value to its desire datatype
             formated_dic[new_key] = literal_eval(value.strip())
 
         else:
 
-            if value == "":
+            if value == "" or value == " ":
                 formated_dic[new_key] = 0
 
             else:
@@ -94,3 +95,77 @@ def get_year_month(date : str) -> tuple:
         month = None
 
     return year, month
+
+def get_switch_and_date(list_of_switches_and_dates : list):
+
+    index_to_find_date = 1
+    for index_to_find_switch in range(0 , len(list_of_switches_and_dates) , 2):
+
+        switch = list_of_switches_and_dates[index_to_find_switch]
+        date = list_of_switches_and_dates[index_to_find_date]
+
+        index_to_find_date += 2
+
+        yield switch , date
+
+def validate_switches_and_date(list_of_switches_and_dates : list ):
+
+    if len(list_of_switches_and_dates)//2 > 3:
+        print("Please Enter only three values of switch and date to get Report")
+        return []
+
+    if len(list_of_switches_and_dates) % 2 != 0:
+        print("One of the Switch or Date is Missing")
+        return []
+
+    list_of_valid_switches = ['-e', '-a', '-c']
+    index_to_find_date = 1
+    for index_to_find_switch in range(0, len(list_of_switches_and_dates), 2):
+
+        switch = list_of_switches_and_dates[index_to_find_switch]
+        date = list_of_switches_and_dates[index_to_find_date]
+        year , month = get_year_month(date)
+
+        if switch in list_of_valid_switches:
+
+            if switch == list_of_valid_switches[0] and month is not None:
+                print(print(f"{switch} This switch date should not contain value of month"))
+                return []
+
+            elif switch == list_of_valid_switches[1] and month is None:
+                print(print(f"{switch} This switch date should contain value of month"))
+                return []
+
+            elif switch == list_of_valid_switches[2] and month is None:
+                print(print(f"{switch} This switch date should contain value of month"))
+                return []
+        else:
+            print(f"{switch} This is not a valid switch")
+            return []
+
+        index_to_find_date += 2
+
+    return True
+
+def validate_input(command_line_arguments):
+    valid_path = command_line_arguments[0]
+
+    if os.path.isdir(valid_path):
+
+        is_switch_date_valid = validate_switches_and_date(command_line_arguments[1:])
+
+        if is_switch_date_valid:
+            return True
+        else:
+            return False
+    else:
+
+        print(f"There is no such Directory as {valid_path}")
+        return False
+
+
+def process_input(command_line_arguments):
+    path = command_line_arguments[0]
+    list_of_switches_and_date = command_line_arguments[1:]
+
+    return path , list_of_switches_and_date

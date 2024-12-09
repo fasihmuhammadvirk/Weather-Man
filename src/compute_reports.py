@@ -39,28 +39,21 @@ def compute_highest_report_for_year_data(year : str , weather_data_object_list :
 
             # checking if the maximum temperature is greater that current
             if weather_data_object.max_temperaturec >= current_highest_temperature["max_temp"]:
-
                 current_highest_temperature["max_temp"] = weather_data_object.max_temperaturec
-
                 current_highest_temperature["date"] = get_month_name_and_date(weather_data_object.pkt)
 
             # checking if the minimum temperature is greater that current
             if weather_data_object.min_temperaturec >= current_lowest_temperature["low_temp"]:
-
                 current_lowest_temperature["low_temp"] = weather_data_object.min_temperaturec
-
                 current_lowest_temperature["date"] = get_month_name_and_date(weather_data_object.pkt)
 
             # checking if the maximum humidity is greater that current
             if weather_data_object.max_humidity >= current_highest_humidity["max_humidity"]:
-
                 current_highest_humidity["max_humidity"] = weather_data_object.max_humidity
-
                 current_highest_humidity["date"] = get_month_name_and_date(weather_data_object.pkt)
 
     # returning a tuple of dictionaries of maximum - minimum temperature and maximum humidity
     return current_highest_temperature , current_lowest_temperature , current_highest_humidity
-
 
 def compute_average_report_for_month_data(year : str , month : str , weather_data_object_list : list ) -> tuple:
 
