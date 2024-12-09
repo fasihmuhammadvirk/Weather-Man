@@ -1,11 +1,9 @@
 import sys
-
 from src.parsers import get_files_data, get_parsed_data
 from src.utils import validate_input , process_input , get_switch_and_date
 from src.report_generators import generate_and_display_report
+
 if __name__ == "__main__":
-
-
 
     input_values = sys.argv[1:]
 

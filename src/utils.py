@@ -3,7 +3,7 @@ import csv
 from datetime import datetime
 import os
 
-def clean_and_convert_dic(dic:dict) -> dict:
+def clean_and_convert_dic(dic : dict) -> dict:
 
     """
     Processes a dictionary by removing spaces and slashes from keys and converting values to appropriate data types.
@@ -159,7 +159,7 @@ def validate_switch(switch : str , month : str) -> bool:
 
 
 
-def validate_switches_and_date(list_of_switches_and_dates : list ) -> bool:
+def validate_switches_and_date(list_of_switches_and_dates : list) -> bool:
 
     # checking if the user has enter more than three values of switch and date
     if len(list_of_switches_and_dates)//2 > 3:
