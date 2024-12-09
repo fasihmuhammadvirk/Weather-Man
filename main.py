@@ -23,5 +23,8 @@ if __name__ == "__main__":
         for switch , date in switches_and_date_generator:
             generate_and_display_report(switch , parsed_weather_data , date)
 
+            # just to add space between reports
+            print(" ")
+
     else:
         print("Please Enter Valid Input and `Try Again`")
