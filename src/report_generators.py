@@ -1,7 +1,6 @@
 from src.compute_reports import compute_highest_report_for_year_data
 from src.compute_reports import compute_average_report_for_month_data
 from src.compute_reports import compute_bar_chart_of_eachday
-from src.utils import get_year_month
 
 def display_computed_result(computed_report_results : any) -> None:
 
@@ -67,20 +66,21 @@ def generate_and_display_report(switch : str , data : list , date : str) -> None
         None
     """
 
-    year , month = get_year_month(date)
-
     # if the given mode is -c
     if switch == "-c":
+        year , month = date.split("/")
         computational_results = compute_bar_chart_of_eachday(year , month , data)
         display_computed_result(computational_results)
 
     # if the given mode is -a
     elif switch == '-a':
+        year, month = date.split("/")
         computational_results = compute_average_report_for_month_data(year , month , data)
         display_computed_result(computational_results)
 
     # if the given mode is -e
     elif switch == '-e':
+        year = date
         computational_results = compute_highest_report_for_year_data(year , data)
         display_computed_result(computational_results)
 

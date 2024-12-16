@@ -1,6 +1,7 @@
 from src.data_strucutres import WeatherData
 from src.utils import  clean_and_convert_dic
 from os import listdir
+import csv
 
 def parse_file_data(file_data : dict) -> object:
 
@@ -22,20 +23,8 @@ def get_parsed_data(list_of_weather_data_objects : list) -> list:
 
 def read_file_data(path : str , file_name : str) -> object:
 
-    """
-    Reads data from a CSV file and returns it as a dictionary-like object.
-
-    Args:
-        path (str): The directory path where the file is located.
-        file_name (str): The name of the file to be read.
-
-    Returns:
-        object: A CSV reader object that iterates over lines in the given file as dictionaries.
-    """
-
     # opening the file by given path and filename
     file = open(f'{path + "/" + file_name}', mode='r')
-
     # reading the data of the file
     file_data_as_dictionary = csv.DictReader(file)
 
@@ -54,7 +43,6 @@ def get_files_data(path : str) -> list:
     """
 
     files_name_list = listdir(path)
-
     list_of_file_data_as_dic_object = []
 
     # iteration through each file from file list
