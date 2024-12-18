@@ -16,7 +16,7 @@ def validate_date(date : str , switch : str) -> bool:
         year = date
 
     # checking if the entered year and month is correct or not
-    if maximum_year >= year >= minimum_year:
+    if int(maximum_year) >= int(year) >= int(minimum_year):
         # if month the switches are either -a or -c
         if month is not None and 12 >= int(month) >= 1 and switch != '-e':
             return True
@@ -65,8 +65,9 @@ def validate_input() -> dict:
     context_dictionary['list_of_switch_date'] = sys.argv[2:]
 
     length_of_switch_date_list = len(context_dictionary['list_of_switch_date'])
+
     # validating length
-    if length_of_switch_date_list > 6 or length_of_switch_date_list / 2 != 0:
+    if length_of_switch_date_list > 6 or length_of_switch_date_list not in [2 , 4 , 6]:
         context_dictionary['is_valid'] = False
         return context_dictionary
 
