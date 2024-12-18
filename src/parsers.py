@@ -32,16 +32,6 @@ def read_file_data(path : str , file_name : str) -> object:
 
 def get_files_data(path : str) -> list:
 
-    """
-    Returns a list of file data as a dic object.
-
-    Args:
-        path (str) : Path to the directory containing all files.
-
-    Returns:
-        list_of_file_object: A List of instance of `WeatherData` containing the parsed and organized weather data.
-    """
-
     files_name_list = listdir(path)
     list_of_file_data_as_dic_object = []
 

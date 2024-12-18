@@ -58,6 +58,7 @@ def get_max_min_year_in_filedata() -> dict:
 
     path = sys.argv[1]
     list_of_file_names = listdir(path)
+
     maximum_and_minimum_year_dic = dict()
     maximum_and_minimum_year_dic['maximum_year'] = ''
     maximum_and_minimum_year_dic['minimum_year'] = list_of_file_names[0]

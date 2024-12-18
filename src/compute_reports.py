@@ -2,21 +2,8 @@ from src.utils import get_month_name_and_date_str , color_text_red , color_text_
 
 def compute_highest_report_for_year_data(year : str , weather_data_object_list : list) -> tuple:
 
-    """
-    Computes the highest and lowest temperature and highest humidity for a given year from a list of
-    weather_data_object_list objects.
     
-    Args:
-        year (str): The year to filter the weather_data_object_list by.
-        weather_data_object_list (list): A list of weather_data_object_list objects containing weather information.
-    
-    Returns:
-        tuple: A tuple containing three dictionaries:
-            - The highest temperature and its date.
-            - The lowest temperature and its date.
-            - The highest humidity and its date.
-    """
-    
+
     current_highest_temperature = {
         "max_temp":0,
         "date": ""

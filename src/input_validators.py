@@ -2,18 +2,6 @@ import os
 import sys
 from src.utils import  get_max_min_year_in_filedata
 
-def switch_and_date_generator(list_of_switches_and_dates : list) -> tuple:
-
-    # generating the value of each switch and date from the list
-    for index_to_find_switch in range(0 , len(list_of_switches_and_dates) , 2):
-
-        index_to_find_date = index_to_find_switch + 1
-        switch = list_of_switches_and_dates[index_to_find_switch]
-        date = list_of_switches_and_dates[index_to_find_date]
-        index_to_find_date += 2
-
-        yield switch , date
-
 def validate_date(date : str , switch : str) -> bool:
 
     max_and_min_year_in_data = get_max_min_year_in_filedata()
@@ -99,3 +87,15 @@ def validate_input() -> dict:
         print(f"There is no such Directory as {context_dictionary['path']}")
         context_dictionary['is_valid'] = False
         return context_dictionary
+
+def switch_and_date_generator(list_of_switches_and_dates : list) -> tuple:
+
+    # generating the value of each switch and date from the list
+    for index_to_find_switch in range(0 , len(list_of_switches_and_dates) , 2):
+
+        index_to_find_date = index_to_find_switch + 1
+        switch = list_of_switches_and_dates[index_to_find_switch]
+        date = list_of_switches_and_dates[index_to_find_date]
+        index_to_find_date += 2
+
+        yield switch , date
