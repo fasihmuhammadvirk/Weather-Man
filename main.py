@@ -1,5 +1,5 @@
-from src.parsers import get_files_data , get_parsed_data
-from src.input_validators import validate_input , switch_and_date_generator
+from src.parsers import get_files_data, get_parsed_data
+from src.input_validators import validate_input, switch_and_date_generator
 from src.report_generators import generate_and_display_report
 
 if __name__ == "__main__":
@@ -19,8 +19,8 @@ if __name__ == "__main__":
         # a generator to generate switch - date pair one by one
         generated_switch_and_date = switch_and_date_generator(list_of_switch_date)
 
-        for switch , date in generated_switch_and_date:
-            generate_and_display_report(switch , parsed_weather_data , date)
+        for switch, date in generated_switch_and_date:
+            generate_and_display_report(switch, parsed_weather_data, date)
             print(" ")  # just to add space between reports
 
     else:

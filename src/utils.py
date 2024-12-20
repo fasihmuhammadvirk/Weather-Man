@@ -3,8 +3,8 @@ from ast import literal_eval
 from datetime import datetime
 from os import listdir
 
-def clean_and_convert_dic(dic : dict) -> dict:
 
+def clean_and_convert_dic(dic: dict) -> dict:
     """
     Processes a dictionary by removing spaces and slashes from keys and converting values to appropriate data types.
 
@@ -23,7 +23,7 @@ def clean_and_convert_dic(dic : dict) -> dict:
         new_key = key.strip().replace(" ", "_").replace("/", "").lower()
 
         # removing . and - (minus) sign from values to check the digits
-        if value.strip("-").replace(".","").isdigit():
+        if value.lstrip("-").replace(".", "").isdigit():
 
             # converting each value to its desire datatype
             formated_dic[new_key] = literal_eval(value.strip())
@@ -35,27 +35,27 @@ def clean_and_convert_dic(dic : dict) -> dict:
 
     return formated_dic
 
-def color_text_red(text : str) -> str:
 
+def color_text_red(text: str) -> str:
     # converting the text in the string red
     return "\033[91m{}\033[00m".format(text)
 
-def color_text_cyan(text : str) -> str:
 
+def color_text_cyan(text: str) -> str:
     # converting the text in the string cyan
-    return "\033[96m{}\033[00m" .format(text)
+    return "\033[96m{}\033[00m".format(text)
 
-def get_month_name_and_date_str(date : str) -> str:
 
+def get_month_name_and_date_str(date: str) -> str:
     # taking a date formate and providing the month name and year
     date_in_list = date.split("-")
-    test_date = datetime(int(date_in_list[0]) , int(date_in_list[1]) , int(date_in_list[2]))
+    test_date = datetime(int(date_in_list[0]), int(date_in_list[1]), int(date_in_list[2]))
     month_name = test_date.strftime("%B")
 
     return str(month_name + " " + date_in_list[2])
 
-def get_max_min_year_in_filedata() -> dict:
 
+def get_max_min_year_in_filedata() -> dict:
     path = sys.argv[1]
     list_of_file_names = listdir(path)
 

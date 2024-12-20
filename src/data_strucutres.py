@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 
+
 # dataclass for the weather data files
 @dataclass
 class WeatherData:

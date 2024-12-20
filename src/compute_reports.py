@@ -1,12 +1,12 @@
-from src.utils import get_month_name_and_date_str , color_text_red , color_text_cyan
+from src.utils import get_month_name_and_date_str, color_text_red, color_text_cyan
 
-def compute_highest_report_for_year_data(year : str , weather_data_object_list : list) -> dict:
 
+def compute_highest_report_for_year_data(year: str, weather_data_object_list: list) -> dict:
     weather_data_highest_report_dic = {
 
-        "highest_temperature":{
-            "value":0,
-            "date":""
+        "highest_temperature": {
+            "value": 0,
+            "date": ""
         },
         "lowest_temperature": {
             "value": 0,
@@ -44,8 +44,8 @@ def compute_highest_report_for_year_data(year : str , weather_data_object_list :
     # returning a tuple of dictionaries of maximum - minimum temperature and maximum humidity
     return weather_data_highest_report_dic
 
-def compute_average_report_for_month_data(year : str , month : str , weather_data_object_list : list ) -> dict:
 
+def compute_average_report_for_month_data(year: str, month: str, weather_data_object_list: list) -> dict:
     weather_date_average_report_dic = dict()
 
     sum_highest_temperature = 0
@@ -58,7 +58,6 @@ def compute_average_report_for_month_data(year : str , month : str , weather_dat
 
         # checking for the object that has the same year and month as desired
         if year in weather_data_object.pkt and month in weather_data_object.pkt.split('-')[1]:
-
             # keeping a count of each value
             total_values += 1
 
@@ -76,8 +75,7 @@ def compute_average_report_for_month_data(year : str , month : str , weather_dat
     return weather_date_average_report_dic
 
 
-def compute_bar_chart_of_eachday(year : str , month : str , weather_data_object_list : list) -> list:
-
+def compute_bar_chart_of_eachday(year: str, month: str, weather_data_object_list: list) -> list:
     index = 0
     list_of_bar_chart_for_eachday = []
 
@@ -86,17 +84,16 @@ def compute_bar_chart_of_eachday(year : str , month : str , weather_data_object_
 
         # checking for the object that has the same year and month as desired
         if year in weather_data_object.pkt and month == weather_data_object.pkt.split('-')[1]:
-
             # keeping count of each index
             index += 1
 
             # creating a string containing information of index , temperature and the horizontal bar chart
-            highest_temperature = "{} {} {}".format(index , color_text_red("*") *
-                                                    weather_data_object.max_temperaturec ,
-                                                    str(weather_data_object.max_temperaturec)+"C" )
+            highest_temperature = "{} {} {}".format(index, color_text_red("*") *
+                                                    weather_data_object.max_temperaturec,
+                                                    str(weather_data_object.max_temperaturec) + "C")
 
-            lowest_temperature = "{} {} {}".format(index , color_text_cyan("-") *
-                                                   weather_data_object.min_temperaturec ,
+            lowest_temperature = "{} {} {}".format(index, color_text_cyan("-") *
+                                                   weather_data_object.min_temperaturec,
                                                    str(weather_data_object.min_temperaturec) + "C")
 
             list_of_bar_chart_for_eachday.append(highest_temperature)
