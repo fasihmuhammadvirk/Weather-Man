@@ -24,14 +24,10 @@ def clean_and_convert_dic(dic: dict) -> dict:
 
         # removing . and - (minus) sign from values to check the digits
         if value.lstrip("-").replace(".", "").isdigit():
-
             # converting each value to its desire datatype
             formated_dic[new_key] = literal_eval(value.strip())
         else:
-            if value.strip() == "":
-                formated_dic[new_key] = 0
-            else:
-                formated_dic[new_key] = value
+            formated_dic[new_key] = value
 
     return formated_dic
 
