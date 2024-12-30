@@ -1,6 +1,7 @@
-.gitattributes
-.idea
-.DS_Store
-/env
+/src/practise.py
 /data
-/src/practice.py
+/env
+.idea
+.gitattributes
+.DS_Store
+/src/__pycache__
